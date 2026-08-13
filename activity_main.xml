@@ -1,0 +1,26 @@
+package com.maretlagadi.welfarecentre.data.dao
+
+import androidx.room.*
+import com.maretlagadi.welfarecentre.data.entities.Programme
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface ProgrammeDao {
+    @Insert
+    suspend fun insert(programme: Programme): Long
+
+    @Update
+    suspend fun update(programme: Programme)
+
+    @Delete
+    suspend fun delete(programme: Programme)
+
+    @Query("SELECT * FROM programmes ORDER BY title ASC")
+    fun getAllProgrammes(): Flow<List<Programme>>
+
+    @Query("SELECT * FROM programmes WHERE programmeId = :id LIMIT 1")
+    suspend fun findById(id: Long): Programme?
+
+    @Query("SELECT COUNT(*) FROM programmes")
+    suspend fun count(): Int
+}

@@ -1,0 +1,28 @@
+package com.maretlagadi.welfarecentre.data.entities
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+enum class ActivityType {
+    LOGIN, LOGOUT, REGISTER, PASSWORD_RESET, PASSWORD_CHANGED, PROFILE_UPDATED,
+    VOLUNTEER_REGISTERED, SHIFT_SIGNUP, SHIFT_ACCEPTED, SHIFT_DECLINED,
+    DONATION_LOGGED, ENQUIRY_SUBMITTED
+}
+
+/**
+ * activity_log table - an admin-facing audit trail of significant actions
+ * users take in the app (not just donations and logins, but every action
+ * listed in ActivityType). userName/userEmail are denormalised at the time
+ * of the event so the log stays readable even if an account is later
+ * deleted.
+ */
+@Entity(tableName = "activity_log")
+data class ActivityLog(
+    @PrimaryKey(autoGenerate = true) val logId: Long = 0,
+    val userId: Long?,
+    val userName: String,
+    val userEmail: String,
+    val type: ActivityType,
+    val description: String,
+    val timestamp: Long = System.currentTimeMillis()
+)

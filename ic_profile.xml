@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/space_md"
+        android:paddingBottom="@dimen/space_lg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/space_md">
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_chevron_left"
+                app:tint="@color/text_primary"
+                android:contentDescription="Back" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/settings"
+                android:textSize="@dimen/text_title"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+        </LinearLayout>
+
+        <TextView style="@style/SectionHeading" android:layout_marginTop="@dimen/space_lg" android:text="Account" />
+        <com.google.android.material.card.MaterialCardView style="@style/BaseCard" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="14dp">
+                <LinearLayout android:id="@+id/rowEditProfile" style="@style/SettingsRow">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Edit Profile" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" />
+                    <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_chevron_right" app:tint="@color/text_muted" />
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" />
+                <LinearLayout android:id="@+id/rowChangePassword" style="@style/SettingsRow">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Change Password" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" />
+                    <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_chevron_right" app:tint="@color/text_muted" />
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" />
+                <LinearLayout android:id="@+id/rowPrivacy" style="@style/SettingsRow">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Privacy Settings" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" />
+                    <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_chevron_right" app:tint="@color/text_muted" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Inline edit-profile form, hidden until "Edit Profile" is tapped -->
+        <LinearLayout
+            android:id="@+id/groupEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/space_sm"
+            android:visibility="gone">
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/full_name">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etName" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="@string/phone">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etPhone" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnSaveProfile" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:backgroundTint="@color/brand_primary" android:text="@string/save" />
+        </LinearLayout>
+
+        <!-- Inline change-password form, hidden until "Change Password" is tapped -->
+        <LinearLayout
+            android:id="@+id/groupChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/space_sm"
+            android:visibility="gone">
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" app:passwordToggleEnabled="true" android:hint="@string/new_password">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etNewPassword" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnChangePassword" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="Update Password" />
+        </LinearLayout>
+
+        <TextView android:id="@+id/tvSettingsError" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/error" android:layout_marginTop="6dp" android:visibility="gone" />
+
+        <TextView style="@style/SectionHeading" android:layout_marginTop="@dimen/space_lg" android:text="Notifications" />
+        <com.google.android.material.card.MaterialCardView style="@style/BaseCard" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="14dp">
+                <LinearLayout style="@style/SettingsRow">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Push Notifications" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/switchPush" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" />
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" />
+                <LinearLayout style="@style/SettingsRow">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Email Notifications" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/switchEmail" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView style="@style/SectionHeading" android:layout_marginTop="@dimen/space_lg" android:text="App Preferences" />
+        <com.google.android.material.card.MaterialCardView style="@style/BaseCard" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="14dp">
+                <LinearLayout style="@style/SettingsRow">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Language" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="English" android:textColor="@color/text_secondary" android:textSize="@dimen/text_caption" />
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" />
+                <LinearLayout style="@style/SettingsRow">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Dark Mode" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial android:id="@+id/switchDarkMode" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView style="@style/SectionHeading" android:layout_marginTop="@dimen/space_lg" android:text="About" />
+        <com.google.android.material.card.MaterialCardView style="@style/BaseCard" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm" android:layout_marginBottom="@dimen/space_lg">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="14dp">
+                <LinearLayout android:id="@+id/rowAboutUs" style="@style/SettingsRow">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="About Us" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" />
+                    <ImageView android:layout_width="18dp" android:layout_height="18dp" android:src="@drawable/ic_chevron_right" app:tint="@color/text_muted" />
+                </LinearLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/divider" />
+                <LinearLayout android:id="@+id/rowLogout" style="@style/SettingsRow">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/logout" android:textColor="@color/error" android:textSize="@dimen/text_body" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>

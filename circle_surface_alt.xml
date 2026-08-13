@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/space_md"
+        android:paddingTop="@dimen/space_md"
+        android:text="@string/notifications"
+        android:textSize="@dimen/text_title"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_sm"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/brand_primary"
+        app:tabSelectedTextColor="@color/brand_primary"
+        app:tabTextColor="@color/text_secondary"
+        app:tabRippleColor="@null"
+        android:background="@color/surface">
+        <com.google.android.material.tabs.TabItem android:text="All" />
+        <com.google.android.material.tabs.TabItem android:text="Unread" />
+        <com.google.android.material.tabs.TabItem android:text="Updates" />
+        <com.google.android.material.tabs.TabItem android:text="Alerts" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/space_sm"
+        android:paddingBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="24dp"
+        android:text="No notifications yet."
+        android:textColor="@color/text_secondary"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+package com.maretlagadi.welfarecentre.data.entities
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+enum class ProgrammeStatus { ONGOING, UPCOMING, PAST }
+
+/**
+ * programmes table. `schedule` and `status` support the filter tabs and
+ * schedule line shown on the Programmes screen.
+ */
+@Entity(tableName = "programmes")
+data class Programme(
+    @PrimaryKey(autoGenerate = true) val programmeId: Long = 0,
+    val title: String,
+    val description: String,
+    val schedule: String = "",
+    val status: ProgrammeStatus = ProgrammeStatus.ONGOING
+)

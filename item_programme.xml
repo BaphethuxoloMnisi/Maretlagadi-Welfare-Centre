@@ -1,0 +1,20 @@
+package com.maretlagadi.welfarecentre.data.entities
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+/**
+ * volunteers table - associated with a user account (user_id FK).
+ * `certificates` is a simple count used on the volunteer dashboard's
+ * "My Activity" stats; it can be incremented by an admin process later.
+ */
+@Entity(tableName = "volunteers")
+data class Volunteer(
+    @PrimaryKey(autoGenerate = true) val volunteerId: Long = 0,
+    val userId: Long,
+    val skills: String,
+    val availability: String,
+    val totalHours: Int = 0,
+    val certificates: Int = 0,
+    val dateRegistered: Long = System.currentTimeMillis()
+)

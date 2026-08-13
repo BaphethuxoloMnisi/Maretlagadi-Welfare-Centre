@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand -->
+    <color name="brand_primary">#2E7D6B</color>
+    <color name="brand_primary_dark">#1E5C4E</color>
+    <color name="brand_primary_light">#E4F3EF</color>
+    <color name="brand_accent">#F2994A</color>
+    <color name="brand_accent_light">#FDEBDA</color>
+
+    <!-- Surfaces -->
+    <color name="background">#F6F7F9</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_alt">#F0F2F5</color>
+    <color name="divider">#E6E8EB</color>
+
+    <!-- Text -->
+    <color name="text_primary">#1C1F23</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_muted">#9AA1A9</color>
+    <color name="text_on_brand">#FFFFFF</color>
+
+    <!-- Status -->
+    <color name="success">#2E9E6C</color>
+    <color name="warning">#E0A100</color>
+    <color name="error">#D64545</color>
+    <color name="info">#3E7CD6</color>
+
+    <!-- Quick-access / category chip colours (soft tints, wireframe-style icon circles) -->
+    <color name="chip_teal_bg">#DCF1EB</color>
+    <color name="chip_teal_fg">#1E7A63</color>
+    <color name="chip_orange_bg">#FCE7D2</color>
+    <color name="chip_orange_fg">#C56A1F</color>
+    <color name="chip_blue_bg">#DCE8FB</color>
+    <color name="chip_blue_fg">#2E5FA3</color>
+    <color name="chip_purple_bg">#E8DFF7</color>
+    <color name="chip_purple_fg">#6A45B0</color>
+    <color name="chip_red_bg">#FBE0E0</color>
+    <color name="chip_red_fg">#C33F3F</color>
+    <color name="chip_gray_bg">#EAEBEE</color>
+    <color name="chip_gray_fg">#5B6270</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="ic_launcher_background">#2E7D6B</color>
+
+    <!-- Legacy aliases kept so existing layouts referencing the old names still resolve -->
+    <color name="primary">@color/brand_primary</color>
+    <color name="primary_dark">@color/brand_primary_dark</color>
+    <color name="accent">@color/brand_accent</color>
+</resources>

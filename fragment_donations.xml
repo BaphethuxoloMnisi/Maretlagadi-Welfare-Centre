@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Home / Admin square icon+label tile (kept for admin dashboard) -->
+    <style name="HomeTile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="cardCornerRadius">@dimen/corner_md</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/divider</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+    </style>
+
+    <style name="HomeTileText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/brand_primary_dark</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <!-- Generic content card used for list items -->
+    <style name="ListItemCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">@dimen/space_md</item>
+        <item name="android:layout_marginVertical">6dp</item>
+        <item name="cardCornerRadius">@dimen/corner_md</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/divider</item>
+    </style>
+
+    <!-- Round icon chip used for quick-access tiles and list icons -->
+    <style name="IconChip">
+        <item name="android:layout_width">@dimen/icon_circle_md</item>
+        <item name="android:layout_height">@dimen/icon_circle_md</item>
+        <item name="cardCornerRadius">26dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="IconChipIcon">
+        <item name="android:layout_width">22dp</item>
+        <item name="android:layout_height">22dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <!-- Quick access tile: icon chip + label, used on Home -->
+    <style name="QuickAccessTile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:paddingVertical">4dp</item>
+    </style>
+
+    <!-- Tab pill used for filter rows (All / Ongoing / Upcoming ...) -->
+    <style name="TabPill" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/surface_alt</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="chipCornerRadius">18dp</item>
+        <item name="chipStrokeWidth">0dp</item>
+    </style>
+
+    <!-- Section heading above a list -->
+    <style name="SectionHeading">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_subtitle</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- Clickable settings/profile row -->
+    <style name="SettingsRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingVertical">14dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Stat tile used on the Volunteer dashboard -->
+    <style name="StatTile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="cardCornerRadius">@dimen/corner_sm</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/divider</item>
+        <item name="cardBackgroundColor">@color/surface_alt</item>
+    </style>
+</resources>

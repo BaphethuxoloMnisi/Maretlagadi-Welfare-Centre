@@ -1,0 +1,40 @@
+package com.maretlagadi.welfarecentre.data
+
+import androidx.room.TypeConverter
+import com.maretlagadi.welfarecentre.data.entities.ActivityType
+import com.maretlagadi.welfarecentre.data.entities.NotificationType
+import com.maretlagadi.welfarecentre.data.entities.ProgrammeStatus
+import com.maretlagadi.welfarecentre.data.entities.ShiftStatus
+import com.maretlagadi.welfarecentre.data.entities.UserRole
+
+class Converters {
+    @TypeConverter
+    fun fromUserRole(role: UserRole): String = role.name
+
+    @TypeConverter
+    fun toUserRole(value: String): UserRole = UserRole.valueOf(value)
+
+    @TypeConverter
+    fun fromShiftStatus(status: ShiftStatus): String = status.name
+
+    @TypeConverter
+    fun toShiftStatus(value: String): ShiftStatus = ShiftStatus.valueOf(value)
+
+    @TypeConverter
+    fun fromNotificationType(type: NotificationType): String = type.name
+
+    @TypeConverter
+    fun toNotificationType(value: String): NotificationType = NotificationType.valueOf(value)
+
+    @TypeConverter
+    fun fromProgrammeStatus(status: ProgrammeStatus): String = status.name
+
+    @TypeConverter
+    fun toProgrammeStatus(value: String): ProgrammeStatus = ProgrammeStatus.valueOf(value)
+
+    @TypeConverter
+    fun fromActivityType(type: ActivityType): String = type.name
+
+    @TypeConverter
+    fun toActivityType(value: String): ActivityType = ActivityType.valueOf(value)
+}

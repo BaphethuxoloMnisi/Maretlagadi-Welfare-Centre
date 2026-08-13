@@ -1,0 +1,219 @@
+package com.maretlagadi.welfarecentre.data
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.maretlagadi.welfarecentre.data.dao.*
+import com.maretlagadi.welfarecentre.data.entities.*
+import com.maretlagadi.welfarecentre.utils.PasswordUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+/**
+ * Central Room database for the Maretlagadi Welfare Centre app.
+ *
+ * This mirrors the relational structure described in section 2.3 (Database
+ * Design) of the project documentation: users, volunteers, programmes,
+ * events, volunteer_shifts, messages, notifications and donations.
+ *
+ * On first run the database is seeded with sample programmes, events and an
+ * administrator account so the app is demonstrable without a backend.
+ * Default admin login: admin@maretlagadi.org / Admin@123
+ *
+ * NOTE: version is bumped whenever the schema changes during development.
+ * fallbackToDestructiveMigration() is fine for a student project demo
+ * database (it just wipes and reseeds on schema change) - swap in real
+ * Migration objects before this ships with data anyone cares about keeping.
+ */
+@Database(
+    entities = [
+        User::class,
+        Volunteer::class,
+        Programme::class,
+        Event::class,
+        VolunteerShift::class,
+        Notification::class,
+        EnquiryMessage::class,
+        Donation::class,
+        ActivityLog::class
+    ],
+    version = 3,
+    exportSchema = false
+)
+@TypeConverters(Converters::class)
+abstract class AppDatabase : RoomDatabase() {
+
+    abstract fun userDao(): UserDao
+    abstract fun volunteerDao(): VolunteerDao
+    abstract fun programmeDao(): ProgrammeDao
+    abstract fun eventDao(): EventDao
+    abstract fun volunteerShiftDao(): VolunteerShiftDao
+    abstract fun notificationDao(): NotificationDao
+    abstract fun enquiryDao(): EnquiryDao
+    abstract fun donationDao(): DonationDao
+    abstract fun activityLogDao(): ActivityLogDao
+
+    companion object {
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+
+        fun getInstance(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "maretlagadi_welfare_centre.db"
+                )
+                    .fallbackToDestructiveMigration()
+                    .addCallback(seedCallback)
+                    .build()
+                INSTANCE = instance
+                instance
+            }
+        }
+
+        private val seedCallback = object : RoomDatabase.Callback() {
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+                CoroutineScope(Dispatchers.IO).launch {
+                    INSTANCE?.let { seedDatabase(it) }
+                }
+            }
+        }
+
+        private suspend fun seedDatabase(database: AppDatabase) {
+            val (hash, salt) = PasswordUtils.hashPassword("Admin@123")
+            database.userDao().insert(
+                User(
+                    name = "Maretlagadi Administrator",
+                    email = "admin@maretlagadi.org",
+                    phone = "0123456789",
+                    passwordHash = hash,
+                    passwordSalt = salt,
+                    role = UserRole.ADMIN
+                )
+            )
+
+            val programmeIds = listOf(
+                database.programmeDao().insert(
+                    Programme(
+                        title = "Youth Mentorship Programme",
+                        description = "Empowering young minds through guidance and support.",
+                        schedule = "Every Saturday",
+                        status = ProgrammeStatus.ONGOING
+                    )
+                ),
+                database.programmeDao().insert(
+                    Programme(
+                        title = "Food Aid Initiative",
+                        description = "Providing food assistance to families in need.",
+                        schedule = "Every Friday",
+                        status = ProgrammeStatus.ONGOING
+                    )
+                ),
+                database.programmeDao().insert(
+                    Programme(
+                        title = "Elderly Care Support",
+                        description = "Bringing care and comfort to our senior community.",
+                        schedule = "Every Sunday",
+                        status = ProgrammeStatus.UPCOMING
+                    )
+                ),
+                database.programmeDao().insert(
+                    Programme(
+                        title = "Environmental Awareness",
+                        description = "Promoting a cleaner and more sustainable environment.",
+                        schedule = "Monthly",
+                        status = ProgrammeStatus.UPCOMING
+                    )
+                ),
+                database.programmeDao().insert(
+                    Programme(
+                        title = "Back to School Stationery Drive",
+                        description = "Collected and distributed stationery for the new school term.",
+                        schedule = "Completed January 2026",
+                        status = ProgrammeStatus.PAST
+                    )
+                )
+            )
+
+            database.eventDao().insert(
+                Event(
+                    programmeId = programmeIds[0],
+                    name = "Community Clean-Up Drive",
+                    date = "2026-05-24",
+                    location = "Maretlagadi Welfare Centre Hall"
+                )
+            )
+            database.eventDao().insert(
+                Event(
+                    programmeId = programmeIds[0],
+                    name = "Youth Mentorship Session",
+                    date = "2026-05-31",
+                    location = "Community Garden Plot A"
+                )
+            )
+            database.eventDao().insert(
+                Event(
+                    programmeId = programmeIds[2],
+                    name = "Winter Warmth Home Visits",
+                    date = "2026-06-20",
+                    location = "Surrounding Neighbourhoods"
+                )
+            )
+            database.eventDao().insert(
+                Event(
+                    programmeId = programmeIds[3],
+                    name = "Digital Literacy Workshop",
+                    date = "2026-06-12",
+                    location = "Maretlagadi Welfare Centre Computer Lab"
+                )
+            )
+
+            database.notificationDao().insert(
+                Notification(
+                    userId = null,
+                    title = "Event Reminder",
+                    message = "Community Clean-Up Drive is tomorrow at 8:00 AM.",
+                    type = NotificationType.REMINDER
+                )
+            )
+            database.notificationDao().insert(
+                Notification(
+                    userId = null,
+                    title = "Programme Update",
+                    message = "The Youth Mentorship Programme schedule has been updated.",
+                    type = NotificationType.UPDATE
+                )
+            )
+            database.notificationDao().insert(
+                Notification(
+                    userId = null,
+                    title = "New Opportunity",
+                    message = "A new volunteering opportunity is available. Check it out!",
+                    type = NotificationType.OPPORTUNITY
+                )
+            )
+            database.notificationDao().insert(
+                Notification(
+                    userId = null,
+                    title = "Emergency Alert",
+                    message = "Heavy rain expected tomorrow. Please stay safe.",
+                    type = NotificationType.ALERT
+                )
+            )
+            database.notificationDao().insert(
+                Notification(
+                    userId = null,
+                    title = "New Announcement",
+                    message = "Our annual charity event is happening next month!",
+                    type = NotificationType.ANNOUNCEMENT
+                )
+            )
+        }
+    }
+}

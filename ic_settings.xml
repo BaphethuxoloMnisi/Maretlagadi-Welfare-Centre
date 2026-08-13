@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/space_md"
+            android:paddingTop="@dimen/space_md"
+            android:text="@string/nav_volunteer"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <!-- Shown when the visitor is not logged in -->
+        <LinearLayout
+            android:id="@+id/groupLoginPrompt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_lg"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please log in or register to sign up as a volunteer."
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/brand_primary"
+                android:text="@string/login" />
+        </LinearLayout>
+
+        <!-- Shown when logged in but not yet registered as a volunteer -->
+        <LinearLayout
+            android:id="@+id/groupRegisterVolunteer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_md"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tell us about your skills and availability so we can match you with a programme."
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="16dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Skills (e.g. teaching, gardening, admin)">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSkills"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Availability (e.g. weekends, weekday afternoons)">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAvailability"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvVolunteerError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/error"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmitVolunteer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/brand_primary"
+                android:text="@string/register" />
+        </LinearLayout>
+
+        <!-- Shown once the user is a registered volunteer -->
+        <LinearLayout
+            android:id="@+id/groupVolunteerDashboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/space_md"
+            android:visibility="gone">
+
+            <!-- Profile summary card -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/BaseCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="14dp">
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="@dimen/icon_circle_lg"
+                        android:layout_height="@dimen/icon_circle_lg"
+                        app:cardCornerRadius="36dp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp"
+                        app:cardBackgroundColor="@color/chip_teal_bg">
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_profile"
+                            app:tint="@color/chip_teal_fg" />
+                    </com.google.android.material.card.MaterialCardView>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tvVolunteerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            tools:text="John Doe" />
+                        <TextView
+                            android:id="@+id/tvVolunteerSince"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textSize="@dimen/text_caption"
+                            android:textColor="@color/text_secondary"
+                            tools:text="Volunteer since Jan 2026" />
+                        <TextView
+                            android:id="@+id/tvVolunteerHours"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textSize="@dimen/text_caption"
+                            android:textStyle="bold"
+                            android:textColor="@color/brand_primary"
+                            tools:text="120 hours contributed" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Upcoming shifts -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/space_lg">
+                <TextView
+                    style="@style/SectionHeading"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/upcoming_shifts" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerShifts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:nestedScrollingEnabled="false" />
+
+            <TextView
+                android:id="@+id/tvNoShifts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:text="No shifts yet - tap an event on the Calendar tab to sign up."
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_caption"
+                android:visibility="gone" />
+
+            <!-- My activity -->
+            <TextView
+                style="@style/SectionHeading"
+                android:layout_marginTop="@dimen/space_lg"
+                android:text="@string/my_activity" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:layout_marginBottom="@dimen/space_lg"
+                android:columnCount="2"
+                android:rowCount="2">
+
+                <com.google.android.material.card.MaterialCardView style="@style/StatTile">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
+                        <TextView android:id="@+id/tvHoursThisMonth" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="18sp" android:textColor="@color/brand_primary_dark" tools:text="12 hrs" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hours This Month" android:textSize="@dimen/text_caption" android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/StatTile">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
+                        <TextView android:id="@+id/tvTotalHours" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="18sp" android:textColor="@color/brand_primary_dark" tools:text="120 hrs" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total Hours" android:textSize="@dimen/text_caption" android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/StatTile">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
+                        <TextView android:id="@+id/tvEventsAttended" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="18sp" android:textColor="@color/brand_primary_dark" tools:text="8" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Events Attended" android:textSize="@dimen/text_caption" android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView style="@style/StatTile">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
+                        <TextView android:id="@+id/tvCertificates" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="18sp" android:textColor="@color/brand_primary_dark" tools:text="3" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Certificates" android:textSize="@dimen/text_caption" android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </GridLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

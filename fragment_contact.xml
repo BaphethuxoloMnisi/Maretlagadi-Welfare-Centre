@@ -1,0 +1,44 @@
+package com.maretlagadi.welfarecentre.utils
+
+import android.content.Context
+import android.content.SharedPreferences
+import com.maretlagadi.welfarecentre.data.entities.UserRole
+
+/**
+ * Persists the authenticated session (current user id and role) so the
+ * user stays logged in between app launches, and exposes the role used
+ * for the role-based access control described in section 2.6.
+ */
+class SessionManager(context: Context) {
+
+    private val prefs: SharedPreferences =
+        context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+    fun saveSession(userId: Long, role: UserRole) {
+        prefs.edit()
+            .putLong(KEY_USER_ID, userId)
+            .putString(KEY_ROLE, role.name)
+            .apply()
+    }
+
+    fun getUserId(): Long = prefs.getLong(KEY_USER_ID, -1L)
+
+    fun getRole(): UserRole {
+        val roleName = prefs.getString(KEY_ROLE, UserRole.PUBLIC_USER.name)
+        return UserRole.valueOf(roleName ?: UserRole.PUBLIC_USER.name)
+    }
+
+    fun isLoggedIn(): Boolean = getUserId() != -1L
+
+    fun isAdmin(): Boolean = isLoggedIn() && getRole() == UserRole.ADMIN
+
+    fun logout() {
+        prefs.edit().clear().apply()
+    }
+
+    companion object {
+        private const val PREFS_NAME = "maretlagadi_session"
+        private const val KEY_USER_ID = "user_id"
+        private const val KEY_ROLE = "user_role"
+    }
+}

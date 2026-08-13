@@ -1,0 +1,19 @@
+package com.maretlagadi.welfarecentre.data.entities
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+/**
+ * messages table - covers both the public Contact Us enquiry form and
+ * general communication between users, per the Communication Module.
+ */
+@Entity(tableName = "messages")
+data class EnquiryMessage(
+    @PrimaryKey(autoGenerate = true) val messageId: Long = 0,
+    val senderName: String,
+    val senderEmail: String,
+    val senderId: Long? = null,
+    val content: String,
+    val dateSent: Long = System.currentTimeMillis(),
+    val resolved: Boolean = false
+)
