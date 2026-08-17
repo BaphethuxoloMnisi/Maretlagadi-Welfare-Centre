@@ -17,14 +17,14 @@
       <div class="col-md-4">
         <h6 class="fw-semibold">Contact Information</h6>
         <ul class="list-unstyled small text-secondary">
-          <li>Email: info@maretlagadi.org</li>
-          <li>Phone: +27 (0)12 345 6789</li>
-          <li>Address: Centurion, Gauteng, South Africa</li>
+          <li>Email: info@maretlagadiwelfarecentre.co.za</li>
+          <li>Phone: +27 (0)82 327 0967</li>
+          <li>Address: 6RQR+VR, Ngwanamatlang Village, Jane Furse, 1085</li>
         </ul>
       </div>
     </div>
     <hr class="border-secondary mt-4">
-    <p class="text-center small text-secondary mb-0">&copy; <?php echo date('Y'); ?> Maretlagadi Welfare Centre. All rights reserved.</p>
+    <p class="textcenter small textsecondary mb0 - footer.php:27">&copy; <?php echo date('Y'); ?> Maretlagadi Welfare Centre. All rights reserved.</p>
   </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
