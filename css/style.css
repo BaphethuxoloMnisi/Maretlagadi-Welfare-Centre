@@ -1,0 +1,58 @@
+:root {
+  --mwc-navy: #10182b;
+  --mwc-green: #2f7a4f;
+  --mwc-cream: #f7f5f0;
+}
+
+body { font-family: 'Poppins', sans-serif; color: #222; }
+.brand-mark { background: var(--mwc-navy); color: #fff; padding: 2px 8px; border-radius: 6px; font-size: .85rem; }
+.footer-link { color: #cfd3da; text-decoration: none; }
+.footer-link:hover { color: #fff; }
+
+/* Hero */
+.hero { background: var(--mwc-cream); padding: 5rem 0 4rem; }
+.hero h1 { font-size: 2.6rem; font-weight: 700; line-height: 1.2; }
+.hero-img-placeholder {
+ /* background: #e4e2dc; border-radius: 12px; min-height: 320px;
+  display: flex; align-items: center; justify-content: center;
+  color: #9a978f; font-weight: 500; letter-spacing: .05em;*/
+}
+
+/* Programme cards */
+.programme-card { border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
+.programme-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.08); }
+.programme-img { background: #e4e2dc; height: 180px; display: flex; align-items: center; justify-content: center; color: #9a978f; }
+
+/* CTA band */
+.cta-band { background: var(--mwc-navy); color: #fff; border-radius: 16px; }
+
+/* Stats */
+.stat-number { font-size: 2.2rem; font-weight: 700; color: var(--mwc-green); }
+
+/* Buttons */
+.btn-brand { background: var(--mwc-navy); color: #fff; }
+.btn-brand:hover { background: #1c2540; color: #fff; }
+
+.amount-btn.active { box-shadow: 0 0 0 3px rgba(47,122,79,.25); }
+
+/* Admin dashboard layout */
+.admin-body { background: #f4f5f7; }
+.admin-wrapper { display: flex; min-height: 100vh; }
+.admin-sidebar { width: 230px; background: var(--mwc-navy); color: #fff; padding: 1.5rem 0; flex-shrink: 0; }
+.admin-brand { padding: 0 1.5rem 1.5rem; font-weight: 700; font-size: 1.1rem; }
+.admin-nav { display: flex; flex-direction: column; }
+.admin-nav-link {
+  color: #b7bcc9; text-decoration: none; padding: .7rem 1.5rem;
+  display: flex; align-items: center; gap: .6rem; font-size: .92rem;
+  border-left: 3px solid transparent; transition: all .15s ease;
+}
+.admin-nav-link:hover { background: rgba(255,255,255,.06); color: #fff; }
+.admin-nav-link.active { background: rgba(255,255,255,.08); color: #fff; border-left-color: var(--mwc-green); font-weight: 600; }
+.admin-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.admin-topbar {
+  background: #fff; padding: 1rem 1.75rem; display: flex; align-items: center;
+  justify-content: space-between; border-bottom: 1px solid #e6e6e6; position: sticky; top: 0; z-index: 10;
+}
+.admin-content { padding: 1.75rem; }
+.stat-card { border: none; border-radius: 14px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+.announcement-thumb { width: 70px; height: 50px; object-fit: cover; border-radius: 6px; background: #e4e2dc; }
