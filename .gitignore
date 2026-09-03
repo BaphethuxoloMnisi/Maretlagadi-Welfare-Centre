@@ -1,0 +1,19 @@
+# ==========================================
+# MARETLAGADI WELFARE CENTRE
+# ==========================================
+
+# Paystack secrets
+website/includes/paystack_config.local.php
+
+# Environment / secret files
+.env
+.env.*
+
+# Debug files
+website/admin/debug.php
+
+# ZIP archives
+*.zip
+
+# Uploaded/generated files
+website/uploads/
