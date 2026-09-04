@@ -88,7 +88,7 @@ The website can be run using a local PHP development environment such as WAMP or
 
 For example:
 
-http://localhost/Website/
+https://maretlagadi-welfare.site.je/index.php
 
 Deployed Website Link:
 
