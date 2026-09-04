@@ -86,11 +86,9 @@ The website can be run using a local PHP development environment such as WAMP or
 - Start Apache and MySQL.
 - Open the website through your local server.
 
-For example:
-
-https://maretlagadi-welfare.site.je/index.php
 
 Deployed Website Link:
+https://maretlagadi-welfare.site.je/index.php
 
 
 # Mobile Application
